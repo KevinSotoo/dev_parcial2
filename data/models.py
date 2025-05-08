@@ -4,6 +4,7 @@ from enum import Enum
 from datetime import datetime
 
 
+
 class EstadoUsuario(str, Enum):
     ACTIVO = "ACTIVO"
     INACTIVO = "INACTIVO"
@@ -30,6 +31,6 @@ class Tarea(SQLModel, table=True):
     nombre: str = Field(nullable=False)
     descripcion: str = Field(nullable=False)
     fecha_creacion: datetime = Field(default_factory=datetime.now)
-    fecha_modificacion: Optional[datetime] = Field(default=None, nullable=True)
+    fecha_modificacion: datetime = Field(default_factory=datetime.now)
     estado: EstadoTarea = Field(default=EstadoTarea.PENDIENTE)
     usuario_id: Optional[int] = Field(default=None, foreign_key="usuario.id")
